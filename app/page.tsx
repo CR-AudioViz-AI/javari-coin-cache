@@ -1,62 +1,32 @@
-// app/page.tsx — Javari Coin Cache
-// AI-powered numismatic collection tracker
-// CR AudioViz AI, LLC · EIN 39-3646201
-export const dynamic = 'force-dynamic'
-export default function Home() {
-  return (
-    <div style={{ background: '#07080f', minHeight: '100vh', color: 'white',
-                  fontFamily: 'Inter, system-ui, sans-serif' }}>
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-                    background: 'rgba(7,7,16,0.97)', borderBottom: '1px solid rgba(255,255,255,0.06)',
-                    height: 58, display: 'flex', alignItems: 'center',
-                    justifyContent: 'space-between', padding: '0 24px' }}>
-        <span style={{ fontWeight: 800, fontSize: 15, color: '#6366f1' }}>Javari Coin Cache</span>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <a href="https://craudiovizai.com/pricing" style={{ color: '#6b7280', fontSize: 13,
-                textDecoration: 'none', padding: '5px 10px' }}>Pricing</a>
-          <a href="https://javariai.com" style={{ color: '#6b7280', fontSize: 13,
-                textDecoration: 'none', padding: '5px 10px' }}>Javari AI</a>
-          <a href="https://craudiovizai.com/auth/signup" style={{ background: '#6366f1',
-                color: 'white', borderRadius: 8, padding: '8px 18px',
-                fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
-            Get Started Free →
-          </a>
-        </div>
-      </nav>
-      <div style={{ height: 58 }} />
-      <section style={{ textAlign: 'center', padding: '100px 24px 80px',
-                        maxWidth: 720, margin: '0 auto' }}>
-        <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 900,
-                      margin: '0 0 20px', lineHeight: 1.1 }}>
-          Javari Coin Cache
-        </h1>
-        <p style={{ fontSize: 18, color: '#9ca3af', margin: '0 auto 40px',
-                     maxWidth: 520, lineHeight: 1.6 }}>
-          AI-powered numismatic collection tracker
-        </p>
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center',
-                       flexWrap: 'wrap' }}>
-          <a href="https://craudiovizai.com/auth/signup" style={{
-              background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
-              color: 'white', borderRadius: 12, padding: '14px 32px',
-              fontSize: 16, fontWeight: 700, textDecoration: 'none' }}>
-            Start Free — No Card →
-          </a>
-          <a href="https://javariai.com/javari" style={{
-              background: 'rgba(255,255,255,0.08)', color: 'white',
-              border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12,
-              padding: '14px 24px', fontSize: 16, fontWeight: 700,
-              textDecoration: 'none' }}>
-            🤖 Ask Javari AI
-          </a>
-        </div>
-      </section>
-      <footer style={{ background: '#030308', borderTop: '1px solid rgba(255,255,255,0.04)',
-                        padding: '24px', textAlign: 'center', color: '#374151',
-                        fontSize: 12 }}>
-        © 2026 CR AudioViz AI, LLC · EIN 39-3646201 · Fort Myers, Florida ·
-        Your Story. Our Design. Everyone Connects. Everyone Wins.
-      </footer>
-    </div>
-  )
+"use client";
+// app/page.tsx — Javari Coin Cache · CR AudioViz AI · EIN 39-3646201 · May 2026
+import { useState } from "react";
+const T=[{"i": "\ud83d\udcb0", "l": "Valuation", "d": "Coin price guide", "h": "/value"}, {"i": "\ud83d\udccb", "l": "Collection", "d": "Track your coins", "h": "/collection"}, {"i": "\ud83d\udd0d", "l": "Identifier", "d": "Identify coins", "h": "/identify"}, {"i": "\ud83d\udcca", "l": "Portfolio", "d": "Collection analytics", "h": "/portfolio"}];
+export default function P() {
+  const [i,setI]=useState(""); const [o,setO]=useState(""); const [l,setL]=useState(false);
+  async function go() { if(!i.trim())return; setL(true);setO("");
+    try { const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:[{role:"user",content:i}],stream:false,systemOverride:"You are a numismatist and coin collecting expert."})});
+      const d=await r.json(); setO(d?.choices?.[0]?.message?.content||d?.content||"Error.");
+    } catch {setO("Error.");} setL(false); }
+  return (<div style={{minHeight:"100vh",background:"#040912",color:"#e2e8f0",fontFamily:"system-ui"}}>
+    <nav style={{background:"#1E3A5F",padding:"0 20px",height:52,display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:100}}>
+      <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:20}}>🪙</span><span style={{fontWeight:800,color:"#00B4D8",fontSize:15}}>Javari Coin Cache</span></div>
+      <a href="https://craudiovizai.com/auth/signup" style={{background:"#FF0800",color:"#fff",borderRadius:7,padding:"5px 14px",fontSize:12,fontWeight:700,textDecoration:"none"}}>Sign Up Free</a>
+    </nav>
+    <section style={{background:"linear-gradient(135deg,#1E3A5F,#040912)",padding:"48px 24px 40px",textAlign:"center"}}>
+      <h1 style={{fontSize:"clamp(22px,4vw,42px)",fontWeight:900,color:"#fff",margin:"0 0 10px",lineHeight:1.05}}>Coin Cache<br/><span style={{color:"#00B4D8"}}>Collection Tools</span></h1>
+      <p style={{color:"rgba(255,255,255,0.7)",fontSize:15,margin:0}}>Manage your coin collection with AI-powered valuations and tracking.</p>
+    </section>
+    <section style={{maxWidth:700,margin:"0 auto",padding:"24px 20px 0"}}>
+      <div style={{background:"#0F1F32",border:"1px solid rgba(0,180,216,0.12)",borderRadius:14,padding:"18px 22px"}}>
+        <div style={{display:"flex",gap:8}}><input value={i} onChange={e=>setI(e.target.value)} onKeyDown={e=>e.key==="Enter"&&go()} placeholder="Value this coin: 1909-S VDB Lincoln cent MS65 red" style={{flex:1,background:"#172D48",border:"1px solid rgba(0,180,216,0.15)",borderRadius:8,padding:"10px 12px",color:"#e2e8f0",fontSize:13,outline:"none",fontFamily:"system-ui"}}/>
+        <button onClick={go} disabled={l||!i.trim()} style={{background:l||!i.trim()?"#0F1F32":"#1E3A5F",color:l||!i.trim()?"#374151":"#00B4D8",border:"1px solid rgba(0,180,216,0.2)",borderRadius:8,padding:"10px 18px",fontSize:13,fontWeight:700,cursor:l||!i.trim()?"not-allowed":"pointer",fontFamily:"system-ui"}}>{l?"...":"Go"}</button></div>
+        {o&&<pre style={{marginTop:12,padding:"12px",background:"rgba(0,180,216,0.05)",border:"1px solid rgba(0,180,216,0.1)",borderRadius:8,fontSize:13,color:"#e2e8f0",lineHeight:1.65,whiteSpace:"pre-wrap",fontFamily:"system-ui",maxHeight:300,overflowY:"auto",margin:"12px 0 0"}}>{o}</pre>}
+      </div>
+    </section>
+    <section style={{maxWidth:960,margin:"0 auto",padding:"28px 20px 64px"}}><div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(190px,1fr))",gap:10}}>
+      {T.map((t:any)=>(<a key={t.h} href={t.h} style={{background:"#0F1F32",border:"1px solid rgba(0,180,216,0.08)",borderRadius:12,padding:"16px",textDecoration:"none",display:"block"}}><span style={{fontSize:24,display:"block",marginBottom:7}}>{t.i}</span><div style={{fontWeight:700,fontSize:13,color:"#e2e8f0",marginBottom:3}}>{t.l}</div><div style={{fontSize:11,color:"#6B7280",lineHeight:1.4}}>{t.d}</div></a>))}
+    </div></section>
+    <footer style={{borderTop:"1px solid rgba(0,180,216,0.08)",padding:"12px 24px",textAlign:"center"}}><p style={{color:"#374151",fontSize:11,margin:0}}>© 2026 CR AudioViz AI, LLC — EIN: 39-3646201</p></footer>
+  </div>);
 }
